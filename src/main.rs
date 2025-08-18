@@ -1,4 +1,4 @@
-/// This code is written by Abhishek in August, 2025.
+/// This code is written by Abhishek in August 2025.
 use rand::Rng; // for the Rng trait (provides random_range)
 use raylib::prelude::*;
 use std::f32::consts::PI;
@@ -222,7 +222,7 @@ impl Particle {
     fn update(&mut self, dt: f32) {
         self.life -= dt;
         self.pos = add(self.pos, mul_scalar(self.vel, dt));
-        self.color.a = ((self.life * 255.0).max(0.0)) as u8;
+        self.color.a = (self.life * 255.0).max(0.0) as u8;
         self.vel.y += 300.0 * dt;
         self.color.r = (self.color.r as f32 * 0.95) as u8;
         self.color.g = (self.color.g as f32 * 0.95) as u8;
@@ -236,7 +236,7 @@ impl Particle {
 }
 
 fn main() {
-    let (mut rl, thread) = raylib::init()
+    let (mut rl, thread) = init()
         .size(SCREEN_WIDTH, SCREEN_HEIGHT)
         .title("Fixed: rand 0.9.2 + raylib 5.5.1")
         .build();
@@ -317,11 +317,11 @@ fn main() {
             if rl.is_mouse_button_pressed(MouseButton::MOUSE_BUTTON_LEFT) && balls.len() < MAX_BALLS
             {
                 let velx = rng.random_range(-200.0f32..200.0f32);
-                let vely = rng.random_range(-200.0f32..200.0f32);
+                let very = rng.random_range(-200.0f32..200.0f32);
                 let radius = rng.random_range(10.0f32..30.0f32);
                 let b = Ball {
                     pos: rl.get_mouse_position(),
-                    vel: v2(velx, vely),
+                    vel: v2(velx, very),
                     radius,
                     color: Color::new(
                         rng.random_range(50u8..255u8),
